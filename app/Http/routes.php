@@ -29,3 +29,15 @@ Route::get('/', function () {
 Route::group(['middleware' => ['web']], function () {
     //
 });
+
+
+//这表示创建了一个路由组。
+//1. `'prefix' => 'user'` 表示这个路由组的 url 前缀是 /user
+//中间那一行代码如果是`Route::get('/'` 那URL是 http://localhost/user
+//如果是: `Route::get('login'` 那么URL就是 http://localhost/user/login
+//2. `'namespace' => 'User'` 表示下面的 `UserController@index`
+//不在 `\App\Http\Controllers\UserController@index`
+//而在 `\App\Http\Controllers\User\UserController@index`，加上了一个命名空间的前缀。
+Route::group(['prefix' => 'user', 'namespace' => 'User'], function () {
+    Route::get('/', 'UserController@index');
+});
