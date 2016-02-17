@@ -40,4 +40,5 @@ Route::group(['middleware' => ['web']], function () {
 //而在 `\App\Http\Controllers\User\UserController@index`，加上了一个命名空间的前缀。
 Route::group(['prefix' => 'user', 'namespace' => 'User'], function () {
     Route::get('/', 'UserController@index');
+    Route::get('alldata', 'UserController@showAllUser');
 });
