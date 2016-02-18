@@ -31,14 +31,24 @@ Route::group(['middleware' => ['web']], function () {
 });
 
 
-//这表示创建了一个路由组。
-//1. `'prefix' => 'user'` 表示这个路由组的 url 前缀是 /user
-//中间那一行代码如果是`Route::get('/'` 那URL是 http://localhost/user
-//如果是: `Route::get('login'` 那么URL就是 http://localhost/user/login
-//2. `'namespace' => 'User'` 表示下面的 `UserController@index`
-//不在 `\App\Http\Controllers\UserController@index`
-//而在 `\App\Http\Controllers\User\UserController@index`，加上了一个命名空间的前缀。
+/*
+ * 创建一个路由组user:
+ * prefix：表示这个路由组的 url 前缀
+ * 在该路由组里Route::get('/'` ，URL对应的是 http://localhost/user
+ * `Route::get('alldata'` 那URL就是 http://localhost/user/alldata
+ * namespace：命名空间。表示 `UserController@index`不在 `\App\Http\Controllers\`下，而在 `\App\Http\Controllers\User\`下。
+ * UserController@index：前面为控制器，后面是调用控制器中的方法
+ */
 Route::group(['prefix' => 'user', 'namespace' => 'User'], function () {
     Route::get('/', 'UserController@index');
     Route::get('alldata', 'UserController@showAllUser');
+});
+
+
+/*
+ * 创建一个路由组:api
+ */
+Route::group(['prefix' => 'api', 'namespace' => 'api'], function () {
+    Route::get('/', 'TestController@index'); //测试专用
+    Route::post('test', 'TestController@test');
 });
