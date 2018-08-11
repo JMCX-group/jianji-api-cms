@@ -1,3 +1,6 @@
+# 简迹
+让你的生活有迹可循
+
 # Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
